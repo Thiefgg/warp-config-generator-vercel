@@ -16,29 +16,26 @@ interface TopbarProps {
 export function Topbar({ activeTab }: TopbarProps) {
   return (
     <header className="flex items-center justify-between px-4 sm:px-5 py-2.5 bg-[var(--surface)] rounded-[var(--radius-lg)] mb-4 flex-wrap gap-2.5">
-      <a href="/"
-        className="flex items-center gap-2.5 min-w-0 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--amber-500)]"
-        aria-label="Открыть генератор">
-        <div className="w-9 h-9 rounded-[var(--radius-md)] bg-[var(--surface-2)] flex items-center justify-center">
-          <Image src="/cloud.ico" alt="Logo" width={20} height={20} className="object-cover"
-          />
+      <a href="/" className="flex items-center gap-2.5 min-w-0 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--amber-500)]" aria-label="Открыть генератор">
+        <div className="w-9 h-9 rounded-[var(--radius-md)] bg-[var(--surface-2)] flex items-center justify-center shrink-0">
+          <Image src="/cloud.ico" alt="Logo" width={20} height={20} className="object-cover" />
         </div>
-        <span className="text-[15px] font-semibold tracking-tight">WARP Generator</span>
+        <span className="text-[15px] font-semibold tracking-tight truncate">WARP Generator</span>
       </a>
 
-      <nav className="flex gap-1 max-sm:w-full" aria-label="Разделы сайта">
+      <nav className="flex gap-1 max-sm:w-full max-sm:grid max-sm:grid-cols-3" aria-label="Разделы сайта">
         {TABS.map((tab) => (
           <a
             key={tab.id}
             href={tab.hash}
-            className={`shrink-0 px-3.5 py-2 rounded-lg text-[13px] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--amber-500)] inline-flex items-center gap-1.5 ${
+            className={`min-w-0 px-3.5 py-2 rounded-lg text-[13px] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--amber-500)] inline-flex items-center justify-center gap-1.5 ${
               activeTab === tab.id
                 ? 'bg-[var(--surface-3)] text-[var(--text)] font-medium'
                 : 'text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--surface-2)]'
             }`}
           >
             {tab.icon}
-            {tab.label}
+            <span className="truncate">{tab.label}</span>
           </a>
         ))}
       </nav>
