@@ -28,16 +28,13 @@ export function HomeClient({ services }: HomeClientProps) {
   const { state } = gen;
 
   return (
-    <div className="max-w-[1100px] mx-auto px-4 lg:px-8 py-4 lg:py-6 min-h-screen flex flex-col">
+    <div className="w-full max-w-[1100px] mx-auto px-4 lg:px-8 py-4 lg:py-6 min-h-screen flex flex-col overflow-x-hidden">
       <Topbar activeTab={activeTab} />
 
-      <div className="flex flex-col lg:grid lg:grid-cols-[1fr_260px] gap-4 flex-1 lg:items-start">
-        <div className="flex flex-col gap-3">
-
-          {/* Generator tab — always mounted */}
+      <div className="w-full min-w-0 flex flex-col lg:grid lg:grid-cols-[minmax(0,1fr)_260px] gap-4 flex-1 lg:items-start">
+        <div className="w-full min-w-0 flex flex-col gap-3">
           <div className={activeTab === 'generator' ? '' : 'hidden'}>
-            {/* Generator card */}
-            <div className="bg-[var(--surface)] rounded-[var(--radius-lg)] p-5">
+            <div className="w-full min-w-0 bg-[var(--surface)] rounded-[var(--radius-lg)] p-5">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-[17px] font-medium flex items-center gap-2">
                   <SlidersHorizontal size={18} weight="duotone" className="text-[var(--text-muted)]" />
@@ -86,8 +83,7 @@ export function HomeClient({ services }: HomeClientProps) {
               </div>
 
               {!state.isGenerated ? (
-                <button onClick={gen.handleGenerate} disabled={state.isLoading}
-                  className="w-full h-12 bg-[var(--amber-900)] hover:bg-[var(--amber-700)] active:scale-[0.985] disabled:opacity-50 disabled:cursor-wait rounded-[var(--radius-md)] text-[14px] font-medium text-[var(--amber-300)] flex items-center justify-center gap-2 transition-all">
+                <button onClick={gen.handleGenerate} disabled={state.isLoading} className="w-full h-12 bg-[var(--amber-900)] hover:bg-[var(--amber-700)] active:scale-[0.985] disabled:opacity-50 disabled:cursor-wait rounded-[var(--radius-md)] text-[14px] font-medium text-[var(--amber-300)] flex items-center justify-center gap-2 transition-all">
                   {state.isLoading ? (
                     <>
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="animate-spin">
@@ -103,8 +99,7 @@ export function HomeClient({ services }: HomeClientProps) {
                   )}
                 </button>
               ) : (
-                <button onClick={gen.reset}
-                  className="w-full h-12 bg-[var(--surface-2)] hover:bg-[var(--surface-3)] active:scale-[0.985] rounded-[var(--radius-md)] text-[14px] text-[var(--text-muted)] flex items-center justify-center gap-2 transition-all">
+                <button onClick={gen.reset} className="w-full h-12 bg-[var(--surface-2)] hover:bg-[var(--surface-3)] active:scale-[0.985] rounded-[var(--radius-md)] text-[14px] text-[var(--text-muted)] flex items-center justify-center gap-2 transition-all">
                   <ArrowClockwise size={15} />
                   Сгенерировать заново
                 </button>
@@ -117,7 +112,6 @@ export function HomeClient({ services }: HomeClientProps) {
               )}
             </div>
 
-            {/* Result — separate block */}
             {state.isGenerated && state.result && (
               <div className="mt-3">
                 <ResultPanel result={state.result} onDownload={gen.downloadConfig} onCopy={gen.copyConfig} />
@@ -126,7 +120,7 @@ export function HomeClient({ services }: HomeClientProps) {
           </div>
 
           {activeTab === 'formats' && <FormatsTab />}
-          {activeTab === 'about'  && <AboutTab />}
+          {activeTab === 'about' && <AboutTab />}
           {activeTab === 'applications' && <ApplicationsTab />}
         </div>
 
