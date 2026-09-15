@@ -14,72 +14,43 @@ export const ENDPOINTS: EndpointOption[] = [
     label: 'По умолчанию',
     value: '162.159.195.1:500',
   },
+
   {
     id: 'default2',
     label: 'Альтернативный',
     value: 'engage.cloudflareclient.com:2408',
   },
+
   {
     id: 'fra-1',
     label: 'FRA #1',
     value: '188.114.97.66:4500',
   },
+
   {
     id: 'fra-2',
     label: 'FRA #2',
     value: '188.114.96.125:4500',
   },
+
   {
     id: 'custom',
     label: 'Указать свой адрес',
     value: '',
   },
+
   {
     id: 'random',
     label: 'Случайный',
     value: '',
     icon: 'dice',
   },
-  {
-    id: 'server-de',
-    label: 'Германия',
-    value: '',
-    externalUrl: 'tg://resolve?domain=findllimonix&post=69',
-    flag: 'DE',
-  },
-  {
-    id: 'server-nl',
-    label: 'Нидерланды',
-    value: '',
-    externalUrl: 'tg://resolve?domain=findllimonix&post=69',
-    flag: 'NL',
-  },
-  {
-    id: 'server-fi',
-    label: 'Финляндия',
-    value: '',
-    externalUrl: 'tg://resolve?domain=findllimonix&post=69',
-    flag: 'FI',
-  },
-  {
-    id: 'server-pl',
-    label: 'Польша',
-    value: '',
-    externalUrl: 'tg://resolve?domain=findllimonix&post=69',
-    flag: 'PL',
-  },
-  {
-    id: 'server-lv',
-    label: 'Латвия',
-    value: '',
-    externalUrl: 'tg://resolve?domain=findllimonix&post=69',
-    flag: 'LV',
-  },
 ];
 
 export function getEndpointValue(id: string, customValue?: string): string {
   if (id === 'custom') return customValue || 'engage.cloudflareclient.com:4500';
   if (id === 'random') return 'engage.cloudflareclient.com:4500';
+
   const ep = ENDPOINTS.find((e) => e.id === id);
   return ep?.value || 'engage.cloudflareclient.com:4500';
 }

@@ -4,7 +4,7 @@ import { FaDiscord, FaYoutube, FaTwitter, FaFacebook } from 'react-icons/fa';
 import { FaTelegram, FaSignalMessenger } from 'react-icons/fa6';
 import { IoLogoWhatsapp } from 'react-icons/io';
 import { RiInstagramFill, RiNetflixFill } from 'react-icons/ri';
-import { SiPatreon, SiCanva, SiProtonvpn, SiModrinth } from 'react-icons/si';
+import { SiPatreon, SiCanvas, SiProtonvpn, SiModrinth } from 'react-icons/si';
 import { TbBoxMultipleFilled } from 'react-icons/tb';
 import {
   ViberIcon,
@@ -45,7 +45,7 @@ const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
   RiNetflixFill,
   // react-icons/si
   SiPatreon,
-  SiCanva,
+  SiCanvas,
   SiProtonvpn,
   SiModrinth,
   // react-icons/tb

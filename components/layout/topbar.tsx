@@ -23,7 +23,7 @@ export function Topbar({ activeTab }: TopbarProps) {
           <Image src="/cloud.ico" alt="Logo" width={20} height={20} className="object-cover"
           />
         </div>
-        <span className="text-[15px] font-semibold tracking-tight">WARP Generator by llimonix</span>
+        <span className="text-[15px] font-semibold tracking-tight">WARP Generator</span>
       </a>
 
       <nav className="flex gap-1 max-sm:w-full" aria-label="Разделы сайта">
