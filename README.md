@@ -288,12 +288,15 @@ MIT License — see [LICENCE](LICENCE)
 
 ## 🔗 Mirrors / Alternative Links
 
-- Telegram Bot: [t.me/warp_generator_bot](https://t.me/warp_generator_bot)
-- Main Site: [warp3.llimonix.pw](https://warp3.llimonix.pw)  
-- Vercel Mirror: [warply3.vercel.app](https://warply3.vercel.app)
-- Netlify Mirror: [getwarp3.netlify.app](https://getwarp3.netlify.app)
-- Cloudflare Mirror: [warp.llimonix.workers.dev](https://warp.llimonix.workers.dev)
-- Telegram Channel: [ллимоникс </>](https://t.me/+PWiSh2qvtmphMjcy)
+- Main Site sakeenkok: [warp.sakeen.ru](https://warp.sakeen.ru)
+- Cloudflare mirror Sakeen: [warp-generator.sadafaxdid.workers.dev](https://warp-generator.sadafaxdid.workers.dev)
+- Telegram Dariysu: [t.me/dar1ysu](https://t.me/dar1ysu)
+- Telegram Bot llimonix: [t.me/warp_generator_bot](https://t.me/warp_generator_bot)
+- Main Site llimonix: [warp3.llimonix.pw](https://warp3.llimonix.pw)  
+- Vercel Mirror llimonix: [warply3.vercel.app](https://warply3.vercel.app)
+- Netlify Mirror llimonix: [getwarp3.netlify.app](https://getwarp3.netlify.app)
+- Cloudflare Mirror llimonix: [warp.llimonix.workers.dev](https://warp.llimonix.workers.dev)
+- Telegram Channel llimonix: [ллимоникс </>](https://t.me/+PWiSh2qvtmphMjcy)
 
 ## Star History
 
