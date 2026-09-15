@@ -2,10 +2,37 @@
 
 [Русский](README_ru.md) | **English**
 
-![WARP Generator screenshot](.github/assets/screenshot.png)
+### Original version by llimonix
 
-Open-source generator for Cloudflare WARP configs (WireGuard / AmneziaWG / Clash / Throne / Nekoray / Husi / Karing / WireSock).
-This is the **public** branch — no captcha, no analytics, no promo blocks. Deploy your own.
+![Original WARP Generator](.github/assets/screenshot.png)
+
+*Original project interface by llimonix / nellimonix.*
+
+### Current fork — Sakeenkok & Dariysu
+
+#### Desktop
+
+![Current WARP Generator — Desktop](.github/assets/screenshot-current.png)
+
+*Current customized desktop version of the fork maintained by Sakeenkok & Dariysu.*
+
+#### Mobile
+
+![Current WARP Generator — Mobile](.github/assets/screenshot-mobile.png)
+
+*Current customized mobile version of the fork maintained by Sakeenkok & Dariysu.*
+
+Open-source generator for Cloudflare WARP configurations with support for WireGuard, AmneziaWG, Clash, Throne, Nekoray, Husi, Karing and WireSock.
+
+This repository is a customized fork of the original [nellimonix/warp-config-generator-vercel](https://github.com/nellimonix/warp-config-generator-vercel) project. The original project and its author remain credited below.
+
+## 🌐 Sakeenkok version
+
+This fork contains personal UI, branding and configuration changes maintained by **Sakeenkok**.
+
+- **Main site:** https://warp.sakeen.ru
+- **Cloudflare mirror:** https://warp-generator.sadafaxdid.workers.dev
+- **GitHub:** https://github.com/Thiefgg/warp-config-generator-vercel
 
 ## 🚀 Quick Deployment
 
@@ -18,9 +45,9 @@ docker run -d --name warp-generator \
   -p 3000:3000 \
   --restart unless-stopped \
   ghcr.io/nellimonix/warp-config-generator-vercel-public:latest
-```
+````
 
-Open http://localhost:3000.
+Open [http://localhost:3000](http://localhost:3000).
 
 ### Docker — build locally
 
@@ -43,21 +70,24 @@ services:
 
 ### Vercel
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/nellimonix/warp-config-generator-vercel&repository-name=warp)
-- Or via [CLI](https://vercel.com/docs/cli): `vercel deploy`
-- Local dev: `vercel dev`
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Thiefgg/warp-config-generator-vercel&repository-name=warp)
+
+* Or via [CLI](https://vercel.com/docs/cli): `vercel deploy`
+* Local dev: `vercel dev`
 
 ### Netlify
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/nellimonix/warp-config-generator-vercel&siteName=warp)
-- Or via [CLI](https://docs.netlify.com/cli/get-started/): `netlify deploy`
-- Local dev: `netlify dev`
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/Thiefgg/warp-config-generator-vercel&siteName=warp)
+
+* Or via [CLI](https://docs.netlify.com/cli/get-started/): `netlify deploy`
+* Local dev: `netlify dev`
 
 ### Cloudflare Workers
 
-[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/nellimonix/warp-config-generator-vercel)
-- Or via [Wrangler](https://developers.cloudflare.com/workers/wrangler/): `wrangler deploy`
-- Local dev: `wrangler dev`
+[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/Thiefgg/warp-config-generator-vercel)
+
+* Or via [Wrangler](https://developers.cloudflare.com/workers/wrangler/): `wrangler deploy`
+* Local dev: `wrangler dev`
 
 ### Cloudflare Pages
 
@@ -68,17 +98,18 @@ CLOUDFLARE_WORKERS=1 npm run build
 npx wrangler pages deploy out --project-name=warp-generator
 ```
 
-Or connect the repo in the Cloudflare dashboard:
-- Build command: `CLOUDFLARE_WORKERS=1 npm run build`
-- Output directory: `out`
+Or connect the repository in the Cloudflare dashboard:
+
+* Build command: `CLOUDFLARE_WORKERS=1 npm run build`
+* Output directory: `out`
 
 ## 🛠️ Local Development
 
 ```bash
 npm install
-npm run dev          # dev server on :3000
-npm run build        # production build
-npm run start        # serve production build
+npm run dev
+npm run build
+npm run start
 npm run lint
 ```
 
@@ -86,21 +117,21 @@ npm run lint
 
 The generator exposes the same options in the UI and in `POST /api/generate`:
 
-| Option | Behavior and constraints |
-|--------|--------------------------|
-| Endpoint | `endpointRandom: true` selects a fresh Cloudflare host and port during generation. For MASQUE it uses the dedicated MASQUE address and port pools. |
-| Clash protocol | `clashProtocol` accepts `awg`, `masque`, or `awg_masque`. The combined mode emits selectable AWG, MASQUE QUIC, and MASQUE H2 proxies. |
-| DNS | Providers come from `config/dns.ts`. Community providers are marked with `•`; selecting one forces **All sites** and clears selected services because they do not support split tunneling. An unknown provider ID falls back to Cloudflare DNS. |
-| IPv6 | Enabled by default. Disabling it removes IPv6 from the interface address, DNS list, and the default all-sites `AllowedIPs`. |
-| Exclude LAN | Available only in **All sites** mode. It replaces the default routes with public address ranges so private/reserved LAN ranges stay outside the tunnel. |
-| PersistentKeepalive | Disabled by default. Enabling it with an empty UI field uses `25`; the API accepts integers from `1` through `65535` and omits invalid values. It is emitted by WireGuard and WireSock configs. |
-| Custom I1 | A non-empty value is trimmed and must be at most 253 characters with no whitespace. AmneziaWG WireGuard uses it to generate a QUIC `I1` mask; WireSock uses it as `Id`. Empty or invalid input silently falls back to a bundled random mask/domain. |
+| Option              | Behavior and constraints                                                                                                                                                                   |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Endpoint            | `endpointRandom: true` selects a fresh Cloudflare host and port during generation. For MASQUE it uses the dedicated MASQUE address and port pools.                                         |
+| Clash protocol      | `clashProtocol` accepts `awg`, `masque`, or `awg_masque`. The combined mode emits selectable AWG, MASQUE QUIC, and MASQUE H2 proxies.                                                      |
+| DNS                 | Providers come from `config/dns.ts`. Community providers are marked with `•`; selecting one forces **All sites** and clears selected services because they do not support split tunneling. |
+| IPv6                | Enabled by default. Disabling it removes IPv6 from the interface address, DNS list, and the default all-sites `AllowedIPs`.                                                                |
+| Exclude LAN         | Available only in **All sites** mode. It replaces the default routes with public address ranges so private/reserved LAN ranges stay outside the tunnel.                                    |
+| PersistentKeepalive | Disabled by default. Enabling it with an empty UI field uses `25`; the API accepts integers from `1` through `65535`.                                                                      |
+| Custom I1           | Allows a custom domain to be used for the AmneziaWG QUIC `I1` mask and WireSock `Id`. Invalid or empty values fall back to the bundled defaults.                                           |
 
 Example request against a local deployment:
 
 ```bash
 curl -X POST http://localhost:3000/api/generate \
-  -H 'Content-Type: application/json' \
+  -H "Content-Type: application/json" \
   -d '{
     "selectedServices": [],
     "siteMode": "all",
@@ -115,189 +146,204 @@ curl -X POST http://localhost:3000/api/generate \
   }'
 ```
 
-A successful response has `success: true` and a `content` object containing
-`configBase64`, `qrCodeBase64`, `configFormat`, and `fileName`. `configBase64`
-contains the Base64-encoded configuration; `qrCodeBase64` is an image data URL.
+A successful response has `success: true` and a `content` object containing `configBase64`, `qrCodeBase64`, `configFormat`, and `fileName`.
 
-## ➕ Adding a new service (PR welcome)
+## ➕ Adding a new service
 
 The "specific sites" mode lets users select services to route through WARP.
+
 To add one:
 
-1. **Fork** the repo and create a branch (e.g. `feat/service-newsite`).
+1. **Fork** the repository and create a branch.
 2. **Create** `config/services/<your-service-key>.json`:
-   ```json
-   {
-     "name": "Display Name",
-     "icon": "FaIconName",
-     "iconLibrary": "fa",
-     "type": "new",
-     "ips": "1.2.3.0/24, 5.6.7.0/24, ..."
-   }
-   ```
-   - `name` — user-visible service name.
-   - `icon` — icon name from [react-icons](https://react-icons.github.io/react-icons/). Verify the name exists in the chosen library.
-   - `iconLibrary` — one of: `fa`, `fa6`, `si`, `bi`, `md`, `ri`, etc. (matches react-icons sub-package).
-   - `type` — optional. Set `"new"` to show a "NEW" badge.
-   - `ips` — comma-separated CIDR ranges. Use a real ASN/IP lookup tool — Cloudflare's whois, BGP.tools, or `whois -h whois.cymru.com " -v <ip>"`.
-3. **Do NOT edit** `worker/api-handler.js` or `functions/api/generate.js`. A GitHub Action (`build-ip-ranges`) rebuilds the `IP_RANGES` blocks in both files automatically on merge to `master`, and syncs the new service into the `production` branch.
-4. **Open a PR** to `master`.
 
-### Local preview of the rebuild
+```json
+{
+  "name": "Display Name",
+  "icon": "FaIconName",
+  "iconLibrary": "fa",
+  "type": "new",
+  "ips": "1.2.3.0/24, 5.6.7.0/24, ..."
+}
+```
+
+* `name` — user-visible service name.
+* `icon` — icon name from [react-icons](https://react-icons.github.io/react-icons/).
+* `iconLibrary` — react-icons library.
+* `type` — optional. Set `"new"` to show a `NEW` badge.
+* `ips` — comma-separated CIDR ranges.
+
+3. **Do NOT edit** `worker/api-handler.js` or `functions/api/generate.js`. The GitHub Action rebuilds the `IP_RANGES` blocks automatically.
+4. **Open a Pull Request** to `master`.
+
+### Local preview
 
 ```bash
 node scripts/build-ip-ranges.mjs
 ```
 
-Runs against `config/services/*.json` and rewrites the `// IP_RANGES:BEGIN ... // IP_RANGES:END` block in both worker/functions files. Safe to run repeatedly — idempotent.
+This rebuilds the generated IP range blocks in the worker and Netlify handlers.
 
 ### Adding a DNS provider
 
-1. Add the provider to `DNS_PROVIDERS` in `config/dns.ts` with a unique `id`,
-   display `label`, IPv4/IPv6 arrays, and `isCommunity`.
-2. Set `isCommunity: true` if the provider cannot be used with specific-site
-   routing. Both the UI and API enforce the all-sites restriction.
-3. Mirror the entry in the embedded `DNS_PROVIDERS` arrays in
-   `worker/api-handler.js` and `functions/api/generate.js`. Unlike IP ranges
-   and I1 masks, DNS providers do not currently have an automatic sync script.
-4. Run `npm run build` before opening the PR.
+1. Add the provider to `DNS_PROVIDERS` in `config/dns.ts`.
+2. Set `isCommunity: true` if the provider cannot be used with specific-site routing.
+3. Mirror the provider in the embedded DNS lists used by the worker and Netlify handlers.
+4. Run:
 
-Docker and Vercel use `config/dns.ts` directly, while Cloudflare Workers and
-Netlify execute the embedded handlers. Keeping all three provider lists in sync
-prevents a provider shown by the static UI from falling back to Cloudflare DNS
-at generation time.
+```bash
+npm run build
+```
+
+before opening a Pull Request.
 
 ### Maintaining default I1 masks
 
-`lib/builders/shared.ts` is the source of truth for masks used when no custom
-I1 domain is supplied:
+`lib/builders/shared.ts` is the source of truth for default I1 masks.
 
-1. Edit only the `I1_MASKS` array between the `// I1_MASKS:BEGIN` and
-   `// I1_MASKS:END` markers.
-2. Run `node scripts/build-i1-masks.mjs`.
-3. Commit the generated changes to `worker/api-handler.js` and
-   `functions/api/generate.js` with the source change.
+1. Edit the `I1_MASKS` array.
+2. Run:
 
-The script validates the markers and mask format, updates both embedded
-handlers, and is idempotent. The `build-i1-masks` workflow also runs when its
-source, script, or workflow changes on `master` and rebuilds the production
-handlers. Do not hand-edit generated I1 blocks.
+```bash
+node scripts/build-i1-masks.mjs
+```
+
+3. Commit the generated changes.
 
 ## 📁 Project Structure
 
-```
+```text
 ├── app/
-│   ├── layout.tsx                 Root layout (Geist font, meta)
-│   ├── page.tsx                   Server component — loads services
-│   ├── not-found.tsx              404 page
-│   └── api/generate/route.ts      POST endpoint (config generation)
+│   ├── layout.tsx
+│   ├── page.tsx
+│   ├── not-found.tsx
+│   └── api/generate/route.ts
 │
 ├── components/
-│   ├── home-client.tsx            Client shell (tabs, state)
+│   ├── home-client.tsx
 │   ├── layout/
-│   │   ├── topbar.tsx             Logo + tab navigation
-│   │   ├── sidebar.tsx            GitHub link + server list (sticky)
+│   │   ├── topbar.tsx
+│   │   ├── sidebar.tsx
 │   │   └── footer.tsx
 │   ├── generator/
-│   │   ├── config-selectors.tsx   Custom dropdowns (format, device, etc.)
-│   │   ├── advanced-settings.tsx  IPv6, keepalive, and custom I1 controls
-│   │   ├── service-picker.tsx     Service selection grid
-│   │   ├── result-panel.tsx       Download / copy / QR result block
-│   │   ├── formats-tab.tsx        Supported formats list
-│   │   └── about-tab.tsx          About + compatible clients
-│   └── icons/                     Icon resolver + flag icons
+│   │   ├── config-selectors.tsx
+│   │   ├── advanced-settings.tsx
+│   │   ├── service-picker.tsx
+│   │   ├── result-panel.tsx
+│   │   ├── formats-tab.tsx
+│   │   └── about-tab.tsx
+│   └── icons/
 │
 ├── config/
-│   ├── services/                  JSON files — one per service (IP ranges)
-│   ├── services-loader.ts         Auto-loads all JSONs at startup
-│   ├── dns.ts                     DNS providers and split-tunnel constraints
-│   ├── endpoints.ts               Cloudflare WARP endpoints
-│   └── formats.ts                 Config format definitions
+│   ├── services/
+│   ├── services-loader.ts
+│   ├── dns.ts
+│   ├── endpoints.ts
+│   └── formats.ts
 │
 ├── lib/
-│   ├── builders/                  One file per config format
-│   │   ├── wireguard.ts
-│   │   ├── throne.ts
-│   │   ├── clash.ts
-│   │   ├── nekoray.ts
-│   │   ├── husi.ts
-│   │   ├── karing.ts
-│   │   ├── wiresock.ts
-│   │   ├── shared.ts              Device profiles and default I1 masks
-│   │   └── index.ts               Dispatcher — buildConfig(format, params)
-│   ├── warp-service.ts            Orchestrator (keys → CF → build → QR)
-│   ├── quic.ts                    Custom QUIC I1 mask generation
-│   ├── cloudflare-client.ts       Cloudflare WARP API registration
-│   ├── crypto.ts                  Key generation (tweetnacl)
-│   ├── qr-generator.ts            QR via external API + SVG fallback
-│   └── ip-ranges.ts               Re-exports from services-loader
+│   ├── builders/
+│   ├── warp-service.ts
+│   ├── quic.ts
+│   ├── cloudflare-client.ts
+│   ├── crypto.ts
+│   ├── qr-generator.ts
+│   └── ip-ranges.ts
 │
 ├── hooks/
-│   ├── use-generator.ts           Client-side generation logic
-│   └── use-mobile.ts              Responsive breakpoint hook
+│   ├── use-generator.ts
+│   └── use-mobile.ts
 │
 ├── scripts/
-│   ├── build-ip-ranges.mjs        Regenerates IP_RANGES in worker + functions
-│   └── build-i1-masks.mjs         Regenerates I1_MASKS in worker + functions
+│   ├── build-ip-ranges.mjs
+│   └── build-i1-masks.mjs
 │
-├── worker/                        Cloudflare Workers runtime
-├── functions/                     Netlify Functions runtime
-├── types/                         TypeScript type definitions
-├── styles/globals.css             Design tokens + dark theme
-├── .github/workflows/             CI: Docker, IP_RANGES, I1_MASKS rebuilds
-├── Dockerfile                     Standalone production build (public)
+├── worker/
+├── functions/
+├── types/
+├── styles/
+├── .github/
+├── Dockerfile
 ├── next.config.mjs
 └── package.json
 ```
 
 ## 🔧 Configuration
 
-No environment variables required for the public build. The generator runs anonymously
-against the public Cloudflare WARP registration API.
+No environment variables are required for the public build.
+
+The generator runs anonymously against the public Cloudflare WARP registration API.
 
 ### Build modes
 
-`next.config.mjs` switches `output` based on environment:
+`next.config.mjs` switches the output depending on the environment:
 
-| Env var                       | Output           | Used by                  |
-|-------------------------------|------------------|--------------------------|
-| `DOCKER_BUILD=1`              | `standalone`     | Docker / Dokploy         |
-| `CLOUDFLARE_WORKERS` / `CF_PAGES` | `export`     | CF Workers / CF Pages    |
-| _none_                        | default          | Vercel / Netlify         |
+| Environment                       | Output       | Used by          |
+| --------------------------------- | ------------ | ---------------- |
+| `DOCKER_BUILD=1`                  | `standalone` | Docker           |
+| `CLOUDFLARE_WORKERS` / `CF_PAGES` | `export`     | Cloudflare       |
+| none                              | default      | Vercel / Netlify |
 
 ## 🌐 Supported Platforms
 
-| Platform              | Support  | Notes                                    |
-|-----------------------|----------|------------------------------------------|
-| Docker (self-host)    | ✅ Full  | standalone Next.js server                |
-| Vercel                | ✅ Full  | default runtime                          |
-| Netlify               | ✅ Full  | Edge functions                           |
-| Cloudflare Workers    | ✅ Full  | static export + worker                   |
-| Cloudflare Pages      | ✅ Full  | static export                            |
+| Platform           | Support |
+| ------------------ | ------- |
+| Docker             | ✅       |
+| Vercel             | ✅       |
+| Netlify            | ✅       |
+| Cloudflare Workers | ✅       |
+| Cloudflare Pages   | ✅       |
+
+## 🔗 Links
+
+### Sakeenkok
+
+* **Main Site:** [https://warp.sakeen.ru](https://warp.sakeen.ru)
+* **Cloudflare Mirror:** [https://warp-generator.sadafaxdid.workers.dev](https://warp-generator.sadafaxdid.workers.dev)
+* **GitHub:** [https://github.com/Thiefgg/warp-config-generator-vercel](https://github.com/Thiefgg/warp-config-generator-vercel)
+* **Telegram Dariysu:** [https://t.me/dar1ysu](https://t.me/dar1ysu)
+
+### Original project
+
+* **Main Site:** [https://warp3.llimonix.pw](https://warp3.llimonix.pw)
+* **Vercel Mirror:** [https://warply3.vercel.app](https://warply3.vercel.app)
+* **Netlify Mirror:** [https://getwarp3.netlify.app](https://getwarp3.netlify.app)
+* **Cloudflare Mirror:** [https://warp.llimonix.workers.dev](https://warp.llimonix.workers.dev)
+* **GitHub:** [https://github.com/nellimonix/warp-config-generator-vercel](https://github.com/nellimonix/warp-config-generator-vercel)
 
 ## 📄 License
 
-MIT License — see [LICENCE](LICENCE)
+MIT License — see [LICENCE](LICENCE).
+
+This fork retains the original project's license and attribution.
 
 ## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Open a Pull Request
+Contributions and improvements are welcome.
 
-## 🔗 Mirrors / Alternative Links
+1. Fork the repository.
+2. Create a feature branch.
+3. Make your changes.
+4. Test the project locally.
+5. Open a Pull Request.
 
-- [Main Site sakeenkok](https://warp.sakeen.ru)
-- [Cloudflare mirror Sakeen](https://warp-generator.sadafaxdid.workers.dev)
-- [Telegram Dariysu](https://t.me/dar1ysu)
-- [Telegram Bot llimonix](https://t.me/warp_generator_bot)
-- [Main Site llimonix](https://warp3.llimonix.pw)  
-- [Vercel Mirror llimonix](https://warply3.vercel.app)
-- [Netlify Mirror llimonix](https://getwarp3.netlify.app)
-- [Cloudflare Mirror llimonix](https://warp.llimonix.workers.dev)
-- [Telegram Channel llimonix](https://t.me/+PWiSh2qvtmphMjcy)
+## ⭐ Star History
 
-## Star History
+[![Star History Chart](https://api.star-history.com/chart?repos=Thiefgg/warp-config-generator-vercel\&type=date\&legend=bottom-right)](https://www.star-history.com/?repos=Thiefgg%2Fwarp-config-generator-vercel&type=date&legend=bottom-right)
 
-[![Star History Chart](https://api.star-history.com/chart?repos=nellimonix/warp-config-generator-vercel&type=date&legend=bottom-right&sealed_token=239JRz1TCX2p0ksZ8FDfmV9rtt4mTaU88UCtljMUhAEtzLx3IE7A7souoN6aCO4BD9Io76Jg-9Zrk_vaT3pB2cVwSfcUCf8RqLS1z2pLcjvxTTBmwcFIoA)](https://www.star-history.com/?repos=nellimonix%2Fwarp-config-generator-vercel&type=date&legend=bottom-right)
+---
+
+### Original project
+
+This project is based on the open-source work of **llimonix / nellimonix**.
+
+Original repository: [https://github.com/nellimonix/warp-config-generator-vercel](https://github.com/nellimonix/warp-config-generator-vercel)
+
+### Sakeenkok
+
+Customized and maintained by **Sakeenkok**.
+
+GitHub: [https://github.com/Thiefgg/warp-config-generator-vercel](https://github.com/Thiefgg/warp-config-generator-vercel)
+
+```
+
